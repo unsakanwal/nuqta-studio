@@ -27,3 +27,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+echo "attached_assets/" >> .gitignore
+git rm -r --cached attached_assets/
+git add .gitignore
+git commit -m "Remove large assets from tracking"
+git push origin main
