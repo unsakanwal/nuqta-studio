@@ -10,8 +10,8 @@ import { SiMeta, SiGoogleads, SiInstagram, SiYoutube, SiTiktok, SiWhatsapp, SiSh
 
 import { useCountUp } from "@/hooks/useCountUp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import logoPath from "@assets/@nuqtacreativestudio_(2)_1778183784036.png";
-import heroImagePath from "@assets/alarm-clock-globe-near-computer-stationery_1778186233936.jpg";
+const logoPath = "/logo.png";
+const heroImagePath = "/homesection.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -33,10 +33,10 @@ function SectionHeader({ label, title, titleHighlight, subtext }: { label: strin
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="text-center max-w-2xl mx-auto mb-16"
+      className="text-center max-w-2xl mx-auto mb-8"
     >
       <div className="text-primary font-bold tracking-widest uppercase text-sm mb-4">{label}</div>
-      <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
+      <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
         {titleHighlight ? (
           <>
             {title.split(titleHighlight)[0]}
@@ -64,6 +64,27 @@ function StatsCounter({ end, label }: { end: number, label: string }) {
     </div>
   );
 }
+
+// Client logos data from PDF portfolio
+const clientLogos = [
+  { name: "Beauty Salon", img: "/Beautysalon.png" },
+  { name: "BTS Brands", img: "/BTSbrands.jpg" },
+  { name: "Furniturizm", img: "/Furniturizm .jpg" },
+  { name: "Hair Castle", img: "/hairCastle.jpg" },
+  { name: "ICSA Group", img: "/ICSAgroup.jpg" },
+  { name: "Idyllic Repairs", img: "/IdyllicRepairs.jpg" },
+  { name: "IZMA Digital", img: "/IzmaDigital.jpg" },
+  { name: "IZMA Foods", img: "/IzmaFoods.jpg" },
+  { name: "MadWomen Digital", img: "/madwomendigital.jpg" },
+  { name: "OpenOffice", img: "/OpenOffice.jpg" },
+  { name: "Paristaan", img: "/Paristaan.jpg" },
+  { name: "Precise", img: "/Precise .png" },
+  { name: "Sallaamti", img: "/Sallaamti.jpg" },
+  { name: "Skinlogixs", img: "/Skinlogicx.jpg" },
+  { name: "Tikka Hut", img: "/TikaHut.jpg" },
+  { name: "Way Finder", img: "/WayFinder.jpg" },
+  { name: "Zarorat Foundation", img: "/ZaroratFoundation.jpg" },
+];
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -95,18 +116,22 @@ export default function Home() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}
       >
-        <div className="container mx-auto px-6 md:px-10 flex justify-between items-center max-w-7xl">
-          {/* Logo + name */}
+        <div className="container mx-auto px-6 md:px-6 flex justify-between items-center max-w-7xl">
+          {/* Logo + name — mix-blend-mode removes white background */}
           <div className="flex items-center gap-3">
-            <img src={logoPath} alt="Nuqta Creative Studio" className="h-9 object-contain" />
-            <span className="font-bold text-foreground text-base hidden sm:block">Nuqta Creative Studio</span>
+            <img
+              src={logoPath}
+              alt="Nuqta Creative Studio"
+              className="h-12 object-contain"
+              style={{ mixBlendMode: "multiply" }}
+            />
           </div>
 
           <div className="hidden md:flex items-center gap-8 font-medium text-foreground/80 text-sm">
             <button onClick={() => scrollTo("projects")} className="hover:text-primary transition-colors duration-200">Portfolio</button>
             <button onClick={() => scrollTo("services")} className="hover:text-primary transition-colors duration-200">Services</button>
             <button onClick={() => scrollTo("process")} className="hover:text-primary transition-colors duration-200">Process</button>
-            <button onClick={() => scrollTo("why")} className="hover:text-primary transition-colors duration-200">About</button>
+            <button onClick={() => scrollTo("about")} className="hover:text-primary transition-colors duration-200">About</button>
           </div>
 
           <div className="hidden md:block">
@@ -133,7 +158,7 @@ export default function Home() {
             <button onClick={() => scrollTo("projects")} className="text-left font-medium py-2 border-b border-border/50">Portfolio</button>
             <button onClick={() => scrollTo("services")} className="text-left font-medium py-2 border-b border-border/50">Services</button>
             <button onClick={() => scrollTo("process")} className="text-left font-medium py-2 border-b border-border/50">Process</button>
-            <button onClick={() => scrollTo("why")} className="text-left font-medium py-2 border-b border-border/50">About</button>
+            <button onClick={() => scrollTo("about")} className="text-left font-medium py-2 border-b border-border/50">About</button>
             <button onClick={() => scrollTo("contact")} className="bg-primary text-white px-6 py-3 rounded-full font-semibold text-center mt-2">
               Get in Touch
             </button>
@@ -143,30 +168,26 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section id="hero" className="relative overflow-hidden min-h-screen flex items-center bg-[#faf8f5]">
-        {/* Subtle background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#fdf9f3] via-[#faf8f5] to-[#f5f0e8] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-10 max-w-7xl relative z-10 pt-24 pb-10">
           <div className="grid md:grid-cols-2 gap-8 md:gap-4 items-center min-h-[calc(100vh-6rem)]">
 
-            {/* LEFT — Text content */}
             <div className="flex flex-col justify-center py-8">
-              {/* Label */}
               <motion.p
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/50 mb-6"
+                className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/50 mb-4"
               >
                 Creative Agency
               </motion.p>
 
-              {/* Headline */}
               <motion.h1
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
-                className="text-[2.6rem] md:text-[3.2rem] lg:text-[3.8rem] font-black leading-[1.05] text-foreground mb-6"
+                className="text-[2.6rem] md:text-[3.2rem] lg:text-[3.8rem] font-black leading-[1.05] text-foreground mb-4"
               >
                 <motion.span
                   variants={{ hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } }}
@@ -188,7 +209,6 @@ export default function Home() {
                 </motion.span>
               </motion.h1>
 
-              {/* Subtext */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -198,7 +218,6 @@ export default function Home() {
                 Elevate your brand presence with Nuqta Creative Studio. We blend strategy, design, and technology to create visual identities that resonate and perform.
               </motion.p>
 
-              {/* Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -226,14 +245,12 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* RIGHT — Real desk photo with overlay badge */}
             <motion.div
               initial={{ opacity: 0, x: 80, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="relative hidden md:flex items-center justify-center"
             >
-              {/* Main photo — no background card */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full max-w-lg">
                 <img
                   src={heroImagePath}
@@ -241,8 +258,6 @@ export default function Home() {
                   className="w-full object-cover block"
                   style={{ maxHeight: "520px" }}
                 />
-
-                {/* "Top Rated" badge overlay */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -254,22 +269,9 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              {/* Floating orange dot decorations */}
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-3 left-3 w-5 h-5 rounded-full bg-primary shadow-lg z-20"
-              />
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute top-10 -right-2 w-3 h-3 rounded-full bg-primary/60 z-20"
-              />
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -bottom-2 right-10 w-4 h-4 rounded-full bg-primary/40 z-20"
-              />
+              <motion.div animate={{ y: [0, -12, 0] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }} className="absolute -top-3 left-3 w-5 h-5 rounded-full bg-primary shadow-lg z-20" />
+              <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute top-10 -right-2 w-3 h-3 rounded-full bg-primary/60 z-20" />
+              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }} className="absolute -bottom-2 right-10 w-4 h-4 rounded-full bg-primary/40 z-20" />
             </motion.div>
 
           </div>
@@ -277,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="py-16 bg-white border-y border-border relative z-20">
+      <section className="py-12 bg-white border-y border-border relative z-20">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
             <StatsCounter end={50} label="Projects Completed" />
@@ -288,14 +290,112 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── ABOUT US ── */}
+      <section id="about" className="py-12 md:py-16 bg-[#fdf9f3]">
+        <div className="container mx-auto px-4 md:px-8 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+
+            {/* Left — decorative abstract block */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="relative flex items-center justify-center"
+            >
+              {/* Layered geometric card */}
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl bg-primary flex items-center justify-center shadow-2xl relative overflow-hidden">
+                {/* Geometric pattern */}
+                <div className="absolute inset-0">
+                  <div className="absolute top-0 left-0 w-full h-full opacity-10 border-[32px] border-white rounded-3xl" />
+                  <div className="absolute top-6 left-6 right-6 bottom-6 border-2 border-white/30 rounded-2xl" />
+                  <div className="absolute top-12 left-12 right-12 bottom-12 border border-white/20 rounded-xl" />
+                </div>
+                {/* Central Urdu text design */}
+                <div className="relative z-10 flex flex-col items-center gap-3">
+                  <div className="text-6xl font-black text-white leading-none" style={{ fontFamily: "Georgia, serif" }}>نقطہ</div>
+                  <div className="w-16 h-0.5 bg-white/50 rounded-full" />
+                  <div className="text-white/80 text-xs font-bold tracking-[0.2em] uppercase">Nuqta Studio</div>
+                  {/* Decorative dots */}
+                  <div className="flex gap-2 mt-2">
+                    <div className="w-2 h-2 rounded-full bg-white/40" />
+                    <div className="w-2 h-2 rounded-full bg-white" />
+                    <div className="w-2 h-2 rounded-full bg-white/40" />
+                  </div>
+                </div>
+                {/* Corner accents */}
+                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/40 rounded-tr-lg" />
+                <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white/40 rounded-bl-lg" />
+              </div>
+
+              {/* Floating stat badge */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 -right-4 bg-white rounded-2xl px-5 py-3 shadow-xl border border-border"
+              >
+                <div className="text-xl font-black text-primary">نقطہ</div>
+                <div className="text-xs text-muted-foreground font-medium">Every brand begins here</div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right — content */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="text-primary font-bold tracking-widest uppercase text-xs mb-3">About Us</div>
+              <h2 className="text-2xl md:text-3xl font-black text-foreground mb-4 leading-tight">
+                Welcome to <span className="text-primary">Nuqta</span> Studio
+              </h2>
+
+              <p className="text-foreground/70 text-sm leading-relaxed mb-3">
+                Nuqta Studio is a creative and marketing agency built on a simple belief:
+              </p>
+
+              <div className="bg-primary/10 border-l-4 border-primary rounded-r-2xl px-5 py-3 mb-4">
+                <p className="text-foreground font-bold text-sm italic">
+                  "Every brand begins with a single idea, a nuqta."
+                </p>
+              </div>
+
+              <p className="text-foreground/70 text-sm leading-relaxed mb-3">
+                Our purpose is to transform that small beginning into a powerful brand presence. Through strategic thinking, creative design, and digital expertise, we help businesses find clarity, build identity, and create meaningful connections.
+              </p>
+
+              <p className="text-foreground/70 text-sm leading-relaxed mb-4">
+                We don't just design visuals, we build brands that grow, connect, and stand out.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => scrollTo("services")}
+                  className="bg-primary text-white px-7 py-3 rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-lg"
+                >
+                  Our Services
+                </button>
+                <button
+                  onClick={() => scrollTo("contact")}
+                  className="border-2 border-primary text-primary px-7 py-3 rounded-full font-bold text-sm hover:bg-primary hover:text-white transition-colors"
+                >
+                  Work With Us
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
-      <section id="process" className="py-24 md:py-32 bg-background">
+      <section id="process" className="py-10 md:py-14 bg-background">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeader 
             label="Our Process"
             title="How It Works"
             titleHighlight="Works"
-            subtext="A simple, transparent process designed to get you results fast — without the back-and-forth confusion."
+            subtext="A simple, transparent process designed to get you results fast, without the back-and-forth confusion."
           />
 
           <div className="relative max-w-5xl mx-auto">
@@ -306,15 +406,15 @@ export default function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-3 gap-12 relative z-10"
+              className="grid md:grid-cols-3 gap-8 relative z-10"
             >
               {[
                 { icon: Clipboard, step: "01", title: "Discovery & Briefing", desc: "We start by understanding your brand, goals, and target audience. A detailed briefing ensures we are fully aligned before we begin." },
-                { icon: Edit3, step: "02", title: "Design & Creation", desc: "Our creative team gets to work — crafting visuals, strategies, and content tailored specifically to your brand identity." },
+                { icon: Edit3, step: "02", title: "Design & Creation", desc: "Our creative team gets to work, crafting visuals, strategies, and content tailored specifically to your brand identity." },
                 { icon: Rocket, step: "03", title: "Deliver & Launch", desc: "We deliver polished, ready-to-use brand assets. You review, we refine, and we launch with confidence." },
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeInUp} className="text-center">
-                  <div className="w-24 h-24 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative">
+                  <div className="w-24 h-24 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl relative">
                     <item.icon size={40} />
                     <div className="absolute -top-2 -right-2 bg-foreground text-background text-xs font-bold w-8 h-8 rounded-full flex items-center justify-center border-2 border-background">
                       {item.step}
@@ -330,13 +430,13 @@ export default function Home() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeader 
             label="Choose Us"
             title="Why Choose Us"
             titleHighlight="Choose Us"
-            subtext="We don't just design — we build brand experiences that connect, convert, and last."
+            subtext="We don't just design, we build brand experiences that connect, convert, and last."
           />
 
           <motion.div 
@@ -347,15 +447,15 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {[
-              { icon: Palette, title: "Creative Excellence", desc: "Every project is crafted with passion and originality — no templates, no shortcuts." },
+              { icon: Palette, title: "Creative Excellence", desc: "Every project is crafted with passion and originality, no templates, no shortcuts." },
               { icon: Clock, title: "On-Time Delivery", desc: "We respect your deadlines. Fast turnaround without ever compromising on quality." },
               { icon: User, title: "Client-First Approach", desc: "Your vision drives everything. We listen closely and revise until you're 100% satisfied." },
               { icon: Zap, title: "AI-Powered Speed", desc: "We leverage the latest AI tools to enhance creativity and speed up the workflow." },
               { icon: Star, title: "Quality Guaranteed", desc: "Professional-grade work backed by years of industry experience and 100+ happy clients." },
-              { icon: Building, title: "All-in-One Studio", desc: "From branding to video editing, we handle everything under one roof — your one creative partner." },
+              { icon: Building, title: "All-in-One Studio", desc: "From branding to video editing, we handle everything under one roof, your one creative partner." },
             ].map((feature, i) => (
               <motion.div key={i} variants={fadeInUp} className="bg-background rounded-2xl p-8 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-white mb-6">
+                <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-white mb-4">
                   <feature.icon size={28} />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
@@ -367,7 +467,7 @@ export default function Home() {
       </section>
 
       {/* OUR SERVICES */}
-      <section id="services" className="py-24 md:py-32 bg-background">
+      <section id="services" className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeader 
             label="What We Do"
@@ -381,7 +481,7 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {[
               { icon: Layers, title: "Branding & Strategy", items: ["Logo Design", "Brand Identity", "Brand Guidelines", "Personal Branding", "Company Profile", "Product Packaging"] },
@@ -391,31 +491,22 @@ export default function Home() {
               { icon: Video, title: "Video Editing", items: ["Social Media Reels", "YouTube Videos", "Promotional Videos", "Motion Graphics"] },
               { icon: Sparkles, title: "AI-Powered Creative Services", items: ["AI Image Generation", "AI Design Assistance", "AI Content Ideas", "Creative Automation"] },
             ].map((service, i) => (
-              <motion.div key={i} variants={fadeInUp} className="bg-white rounded-2xl p-8 shadow-sm border border-border flex flex-col h-full hover:shadow-lg transition-all duration-300">
-                <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center text-white mb-6 shrink-0">
-                  <service.icon size={32} />
+              <motion.div key={i} variants={fadeInUp} className="bg-white rounded-2xl p-5 shadow-sm border border-border flex flex-col h-full hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white mb-4 shrink-0">
+                  <service.icon size={24} />
                 </div>
-                <h3 className="text-2xl font-bold mb-6">{service.title}</h3>
-                <ul className="space-y-3 mb-8 grow">
+                <h3 className="text-lg font-bold mb-3">{service.title}</h3>
+                <ul className="space-y-2 grow">
                   {service.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start text-muted-foreground">
-                      <span className="text-primary mr-3 mt-1.5 text-xs">●</span>
+                    <li key={idx} className="flex items-start text-muted-foreground text-sm">
+                      <span className="text-primary mr-2 mt-1.5 text-xs">●</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-                <button className="text-primary font-bold text-left hover:underline mt-auto flex items-center">
-                  Learn More <span className="ml-2">→</span>
-                </button>
               </motion.div>
             ))}
           </motion.div>
-
-          <div className="text-center">
-            <button className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform btn-glow">
-              View All Services
-            </button>
-          </div>
         </div>
       </section>
 
@@ -456,78 +547,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECENT PROJECTS */}
-      <section className="py-24 md:py-32 bg-background">
+      {/* ── CREATIVE CONTRIBUTIONS ── */}
+      <section id="contributions" className="py-10 md:py-14 bg-background">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeader 
-            label="Our Work"
-            title="Recent Projects"
-            titleHighlight="Projects"
-            subtext="A glimpse into the brands we've helped build, grow, and stand out."
+          <SectionHeader
+            label="Our Clients"
+            title="Creative Contributions"
+            titleHighlight="Contributions"
+            subtext="Brands we've had the privilege of designing, growing, and bringing to life."
           />
+      
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="flex flex-wrap justify-center items-center gap-8 md:gap-12"
+          >
+            {clientLogos.map((client, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.1 }}
+                className="flex items-center justify-center"
+              >
+                <img
+                  src={client.img}
+                  alt={client.name}
+                  className="h-16 md:h-20 w-auto object-contain transition-all duration-300"
+                  style={{ mixBlendMode: "multiply" }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+      
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center text-muted-foreground mt-10 text-sm"
+          >
+            And many more brands across Pakistan and beyond.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* RECENT PROJECTS */}
+      <section id="projects" className="py-10 md:py-14 bg-white">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center max-w-2xl mx-auto mb-10">
+            <SectionHeader
+              label="Our Work"
+              title="Recent "
+              titleHighlight="Projects"
+              subtext="A glimpse into the brands we've helped build, grow, and stand out."
+            />
+          </motion.div>
 
           <motion.div 
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {[
-              {
-                img: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=900&q=85",
-                cat: "Branding & Strategy",
-                title: "Brand Identity — Zara Eats",
-                desc: "Complete brand identity including logo, color palette, and packaging for a fast food startup."
-              },
-              {
-                img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=85",
-                cat: "Social Media Management",
-                title: "Social Media — FitZone Gym",
-                desc: "Monthly social media content, reels, and growth strategy that grew the page to 20K followers."
-              },
-              {
-                img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85",
-                cat: "Marketing & Advertisement",
-                title: "Ad Campaign — StyleHouse",
-                desc: "Meta Ads campaign that achieved 5x ROAS for a fashion e-commerce brand."
-              },
-              {
-                img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=85",
-                cat: "Video Editing",
-                title: "Video Series — TechTalks",
-                desc: "YouTube video editing with motion graphics for a tech education channel."
-              },
-              {
-                img: "https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=900&q=85",
-                cat: "Outdoor & Print Design",
-                title: "Outdoor Print — CafePlex",
-                desc: "Billboard, standee, and menu card designs for a cafe chain across 5 cities."
-              },
-              {
-                img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&q=85",
-                cat: "AI Creative Services",
-                title: "AI Visuals — NovaTech",
-                desc: "AI-generated product imagery and creative automation for a tech brand's launch campaign."
-              },
+              { img: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=900&q=85", cat: "Branding & Strategy", title: "Brand Identity — Zara Eats", desc: "Complete brand identity including logo, color palette, and packaging for a fast food startup." },
+              { img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=85", cat: "Social Media Management", title: "Social Media — FitZone Gym", desc: "Monthly social media content, reels, and growth strategy that grew the page to 20K followers." },
+              { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85", cat: "Marketing & Advertisement", title: "Ad Campaign — StyleHouse", desc: "Meta Ads campaign that achieved 5x ROAS for a fashion e-commerce brand." },
+              { img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=85", cat: "Video Editing", title: "Video Series — TechTalks", desc: "YouTube video editing with motion graphics for a tech education channel." },
+              { img: "https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=900&q=85", cat: "Outdoor & Print Design", title: "Outdoor Print — CafePlex", desc: "Billboard, standee, and menu card designs for a cafe chain across 5 cities." },
+              { img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&q=85", cat: "AI Creative Services", title: "AI Visuals — NovaTech", desc: "AI-generated product imagery and creative automation for a tech brand's launch campaign." },
             ].map((project, i) => (
               <motion.div key={i} variants={fadeInUp} className="group cursor-pointer">
-                <div className="w-full aspect-[4/3] rounded-2xl mb-5 overflow-hidden relative shadow-lg">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    style={{ transformOrigin: "center" }}
-                  />
+                <div className="w-full aspect-[4/3] rounded-xl mb-3 overflow-hidden relative shadow-md">
+                  <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-                  <div className="absolute bottom-4 left-4">
-                    <span className="bg-primary text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow">
-                      {project.cat}
-                    </span>
+                  <div className="absolute bottom-3 left-3">
+                    <span className="bg-primary text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">{project.cat}</span>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-200">{project.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{project.desc}</p>
+                <h3 className="text-base font-bold mb-1 group-hover:text-primary transition-colors duration-200">{project.title}</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed">{project.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -535,103 +637,68 @@ export default function Home() {
       </section>
 
       {/* PRICING */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-14 md:py-18 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionHeader 
-            label="Packages"
-            title="Simple Pricing"
-            titleHighlight="Pricing"
-            subtext="Transparent packages with no hidden fees. Choose what fits your brand and budget."
-          />
+          <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center max-w-2xl mx-auto mb-10">
+            <div className="text-primary font-bold tracking-widest uppercase text-xs mb-3">Packages</div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">Simple <span className="text-primary">Pricing</span></h2>
+            <p className="text-muted-foreground text-sm">Transparent packages with no hidden fees. Choose what fits your brand and budget.</p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-            {/* STARTER */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="bg-background rounded-3xl p-8 border border-border shadow-sm"
-            >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-2">STARTER</h3>
-                <div className="text-3xl font-black mb-4">15,000 <span className="text-lg text-muted-foreground font-normal">PKR/mo</span></div>
-                <p className="text-muted-foreground">Perfect for small businesses getting started.</p>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-center">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-background rounded-2xl p-6 border border-border shadow-sm">
+              <div className="mb-5">
+                <h3 className="text-lg font-bold mb-1">STARTER</h3>
+                <div className="text-2xl font-black mb-2">15,000 <span className="text-sm text-muted-foreground font-normal">PKR/mo</span></div>
+                <p className="text-muted-foreground text-sm">Perfect for small businesses getting started.</p>
               </div>
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-2.5 mb-4">
                 {["Logo Design", "10 Social Media Posts", "Basic Brand Colors & Fonts", "1 Revision Round", "WhatsApp Support"].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <Check className="text-primary mr-3 shrink-0" size={20} />
-                    <span className="text-foreground font-medium">{item}</span>
-                  </li>
+                  <li key={i} className="flex items-start text-sm"><Check className="text-primary mr-2 shrink-0" size={16} /><span className="text-foreground font-medium">{item}</span></li>
                 ))}
               </ul>
-              <button className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 rounded-full font-bold transition-colors">
-                Get Started
-              </button>
+              <button onClick={() => scrollTo("contact")} className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-2.5 rounded-full font-bold text-sm transition-colors">Get Started</button>
             </motion.div>
 
-            {/* GROWTH */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1.05 }}
-              viewport={{ once: true }}
-              className="bg-primary text-primary-foreground rounded-3xl p-10 shadow-2xl relative z-10"
-            >
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-foreground text-background text-xs font-bold px-4 py-1.5 rounded-full tracking-wider">
-                MOST POPULAR
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1.05 }} viewport={{ once: true }} className="bg-primary text-primary-foreground rounded-2xl p-7 shadow-2xl relative z-10">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-foreground text-background text-xs font-bold px-3 py-1 rounded-full tracking-wider">MOST POPULAR</div>
+              <div className="mb-5">
+                <h3 className="text-lg font-bold mb-1">GROWTH</h3>
+                <div className="text-2xl font-black mb-2">35,000 <span className="text-sm text-primary-foreground/80 font-normal">PKR/mo</span></div>
+                <p className="text-primary-foreground/90 text-sm">Best for growing brands that need consistent content.</p>
               </div>
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-2">GROWTH</h3>
-                <div className="text-4xl font-black mb-4">35,000 <span className="text-xl text-primary-foreground/80 font-normal">PKR/mo</span></div>
-                <p className="text-primary-foreground/90">Best for growing brands that need consistent content.</p>
-              </div>
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-2.5 mb-4
+              ">
                 {["Full Brand Identity", "30 Social Media Posts", "2 Reels / Videos", "Meta Ads Campaign", "Caption Writing", "3 Revision Rounds", "Priority Support"].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <Check className="text-white mr-3 shrink-0" size={20} />
-                    <span className="font-medium">{item}</span>
-                  </li>
+                  <li key={i} className="flex items-start text-sm"><Check className="text-white mr-2 shrink-0" size={16} /><span className="font-medium">{item}</span></li>
                 ))}
               </ul>
-              <button className="w-full bg-white text-primary hover:bg-foreground hover:text-white py-4 rounded-full font-bold transition-colors shadow-lg">
-                Get Started
-              </button>
+              <button onClick={() => scrollTo("contact")} className="w-full bg-white text-primary hover:bg-foreground hover:text-white py-3 rounded-full font-bold text-sm transition-colors shadow-lg">Get Started</button>
             </motion.div>
 
-            {/* PREMIUM */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="bg-background rounded-3xl p-8 border border-border shadow-sm"
-            >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-2">PREMIUM</h3>
-                <div className="text-3xl font-black mb-4">70,000 <span className="text-lg text-muted-foreground font-normal">PKR/mo</span></div>
-                <p className="text-muted-foreground">Complete creative partnership for established brands.</p>
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-background rounded-2xl p-6 border border-border shadow-sm">
+              <div className="mb-5">
+                <h3 className="text-lg font-bold mb-1">PREMIUM</h3>
+                <div className="text-2xl font-black mb-2">70,000 <span className="text-sm text-muted-foreground font-normal">PKR/mo</span></div>
+                <p className="text-muted-foreground text-sm">Complete creative partnership for established brands.</p>
               </div>
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-2.5 mb-4">
                 {["Everything in Growth", "Full Social Media Management", "4 Reels + YouTube Videos", "Google + Meta Ads", "AI Creative Assets", "Outdoor / Print Design", "Unlimited Revisions", "Dedicated Account Manager"].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <Check className="text-primary mr-3 shrink-0" size={20} />
-                    <span className="text-foreground font-medium">{item}</span>
-                  </li>
+                  <li key={i} className="flex items-start text-sm"><Check className="text-primary mr-2 shrink-0" size={16} /><span className="text-foreground font-medium">{item}</span></li>
                 ))}
               </ul>
-              <button className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 rounded-full font-bold transition-colors">
-                Get Started
-              </button>
+              <button onClick={() => scrollTo("contact")} className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-2.5 rounded-full font-bold text-sm transition-colors">Get Started</button>
             </motion.div>
           </div>
 
-          <div className="text-center mt-16 max-w-xl mx-auto">
-            <p className="text-lg text-muted-foreground mb-4">Need a custom package? Contact us and we'll build one around your needs.</p>
+          <div className="text-center mt-8 max-w-xl mx-auto">
+            <p className="text-sm text-muted-foreground">Need a custom package? Contact us and we'll build one around your needs.</p>
           </div>
         </div>
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-10 md:py-14 bg-background">
         <div className="container mx-auto px-4 md:px-8">
           <SectionHeader 
             label="Client Love"
@@ -653,14 +720,12 @@ export default function Home() {
               { text: "They handled our social media completely — content, captions, ads. Our page grew from 2K to 15K followers in just 3 months. Incredible team!", initials: "BM", name: "Bilal Mehmood", title: "Restaurant Owner" }
             ].map((testimonial, i) => (
               <motion.div key={i} variants={fadeInUp} className="bg-white p-8 rounded-3xl shadow-sm border border-border flex flex-col">
-                <div className="flex gap-1 mb-6 text-primary">
+                <div className="flex gap-1 mb-4 text-primary">
                   {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
                 </div>
                 <p className="text-lg italic text-foreground mb-8 grow">"{testimonial.text}"</p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">
-                    {testimonial.initials}
-                  </div>
+                  <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">{testimonial.initials}</div>
                   <div>
                     <div className="font-bold text-foreground">{testimonial.name}</div>
                     <div className="text-sm text-muted-foreground">{testimonial.title}</div>
@@ -673,7 +738,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 md:px-8 max-w-3xl">
           <SectionHeader 
             label="FAQ"
@@ -692,12 +757,8 @@ export default function Home() {
               { q: "How do I get started?", a: "Simply reach out via WhatsApp, email, or Instagram. We'll schedule a free discovery call to understand your needs and recommend the best plan." }
             ].map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-b border-border py-2">
-                <AccordionTrigger className="text-lg font-bold hover:text-primary hover:no-underline transition-colors text-left">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-4">
-                  {faq.a}
-                </AccordionContent>
+                <AccordionTrigger className="text-lg font-bold hover:text-primary hover:no-underline transition-colors text-left">{faq.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-4">{faq.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -705,7 +766,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-24 md:py-32 bg-background border-t border-border">
+      <section id="contact" className="py-10 md:py-14 bg-background border-t border-border">
         <div className="container mx-auto px-4 md:px-8 max-w-5xl text-center">
           <SectionHeader 
             label="Get in Touch"
@@ -715,42 +776,21 @@ export default function Home() {
           />
 
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.a 
-              href="https://wa.me/923297646980" 
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-3xl border border-border shadow-sm flex flex-col items-center group cursor-pointer"
-            >
-              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                <Phone size={32} />
-              </div>
+            <motion.a href="https://wa.me/923297646980" target="_blank" rel="noopener noreferrer" whileHover={{ y: -5 }} className="bg-white p-8 rounded-3xl border border-border shadow-sm flex flex-col items-center group cursor-pointer">
+              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform"><Phone size={32} /></div>
               <h3 className="text-xl font-bold mb-2">WhatsApp</h3>
               <p className="text-muted-foreground">0329-7646980</p>
             </motion.a>
 
-            <motion.a 
-              href="mailto:nuqtacreativestudiopk@gmail.com" 
-              whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-3xl border border-border shadow-sm flex flex-col items-center group cursor-pointer"
-            >
-              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                <Mail size={32} />
-              </div>
+            <motion.a href="mailto:nuqtacreativestudiopk@gmail.com" whileHover={{ y: -5 }} className="bg-white p-8 rounded-3xl border border-border shadow-sm flex flex-col items-center group cursor-pointer">
+              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform"><Mail size={32} /></div>
               <h3 className="text-xl font-bold mb-2">Email</h3>
               <p className="text-muted-foreground">nuqtacreativestudiopk@gmail.com</p>
             </motion.a>
 
-            <motion.a 
-              href="https://instagram.com/nuqtacreativestudio1" 
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-3xl border border-border shadow-sm flex flex-col items-center group cursor-pointer"
-            >
-              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                <Instagram size={32} />
-              </div>
+            <motion.a href="https://instagram.com/nuqtacreativestudio1" target="_blank" rel="noopener noreferrer" whileHover={{ y: -5 }} className="bg-white p-8 rounded-3xl border border-border shadow-sm flex flex-col items-center group cursor-pointer">
+              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-4
+               group-hover:scale-110 transition-transform"><Instagram size={32} /></div>
               <h3 className="text-xl font-bold mb-2">Instagram</h3>
               <p className="text-muted-foreground">@nuqtacreativestudio1</p>
             </motion.a>
@@ -761,26 +801,32 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-white border-t border-border pt-20 pb-10">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div className="lg:col-span-1">
-              <img src={logoPath} alt="Nuqta Creative Studio" className="h-12 object-contain mb-6" />
+              <img
+                src={logoPath}
+                alt="Nuqta Creative Studio"
+                className="h-16 object-contain mb-4"
+                style={{ mixBlendMode: "multiply" }}
+              />
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Elevating brands through creative design, strategic marketing, and AI-powered solutions.
               </p>
             </div>
             
             <div>
-              <h4 className="text-base font-bold mb-6 text-foreground">Quick Links</h4>
+              <h4 className="text-base font-bold mb-4 text-foreground">Quick Links</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li><button onClick={() => scrollTo("hero")} className="hover:text-primary transition-colors">Home</button></li>
+                <li><button onClick={() => scrollTo("about")} className="hover:text-primary transition-colors">About</button></li>
                 <li><button onClick={() => scrollTo("services")} className="hover:text-primary transition-colors">Services</button></li>
-                <li><button onClick={() => scrollTo("process")} className="hover:text-primary transition-colors">About</button></li>
+                <li><button onClick={() => scrollTo("process")} className="hover:text-primary transition-colors">Process</button></li>
                 <li><button onClick={() => scrollTo("contact")} className="hover:text-primary transition-colors">Contact</button></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-base font-bold mb-6 text-foreground">Services</h4>
+              <h4 className="text-base font-bold mb-4 text-foreground">Services</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li><span className="hover:text-primary transition-colors cursor-pointer">Branding & Strategy</span></li>
                 <li><span className="hover:text-primary transition-colors cursor-pointer">Graphic Design</span></li>
@@ -793,20 +839,11 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-base font-bold mb-6 text-foreground">Contact</h4>
+              <h4 className="text-base font-bold mb-4 text-foreground">Contact</h4>
               <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-center gap-3">
-                  <Phone size={18} className="text-primary shrink-0" />
-                  <span>0329-7646980</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail size={18} className="text-primary shrink-0" />
-                  <span>nuqtacreativestudiopk@gmail.com</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Instagram size={18} className="text-primary shrink-0" />
-                  <span>@nuqtacreativestudio1</span>
-                </li>
+                <li className="flex items-center gap-3"><Phone size={18} className="text-primary shrink-0" /><span>0329-7646980</span></li>
+                <li className="flex items-center gap-3"><Mail size={18} className="text-primary shrink-0" /><span>nuqtacreativestudiopk@gmail.com</span></li>
+                <li className="flex items-center gap-3"><Instagram size={18} className="text-primary shrink-0" /><span>@nuqtacreativestudio1</span></li>
               </ul>
             </div>
           </div>
