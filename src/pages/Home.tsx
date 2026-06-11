@@ -67,23 +67,29 @@ function StatsCounter({ end, label }: { end: number, label: string }) {
 
 // Client logos — real images from /public
 const clientLogos = [
+  { name: "Infinity Basket",      img: "/InfinityBasket.jpeg" },
   { name: "Beauty Salon",       img: "/Beautysalon.png" },
   { name: "BTS Brands",         img: "/BTSbrands.jpg" },
   { name: "Furniturizm",        img: "/Furniturizm .jpg" },
+  { name: "Jadeed Group",         img: "/JadeedGroup.jpeg" },   
   { name: "Hair Castle",        img: "/hairCastle.jpg" },
   { name: "ICSA Group",         img: "/ICSAgroup.jpg" },
   { name: "Idyllic Repairs",    img: "/IdyllicRepairs.jpg" },
   { name: "IZMA Digital",       img: "/IzmaDigital.jpg" },
   { name: "IZMA Foods",         img: "/IzmaFoods.jpg" },
+  { name: "Jadded Spices",        img: "/JaddedSpices.jpeg" },   
+  { name: "Jadeed Rice",          img: "/JadeedRice.jpeg" },   
   { name: "MadWomen Digital",   img: "/madwomendigital.jpg" },
   { name: "OpenOffice",         img: "/OpenOffice.jpg" },
   { name: "Paristaan",          img: "/Paristaan.jpg" },
   { name: "Precise",            img: "/Precise .png" },
   { name: "Sallaamti",          img: "/Sallaamti.jpg" },
+  { name: "Jadeed Foods",         img: "/JadeedFoods.jpeg" },   
   { name: "Skinlogixs",         img: "/Skinlogicx.jpg" },
   { name: "Tikka Hut",          img: "/TikaHut.jpg" },
   { name: "Way Finder",         img: "/WayFinder.jpg" },
   { name: "Zarorat Foundation", img: "/ZaroratFoundation.jpg" },
+  { name: "Jadeed Agriculture",   img: "/JadeedAgriculture.jpeg" }, // ← new
 ];
 
 export default function Home() {
@@ -348,7 +354,7 @@ export default function Home() {
 
               <div className="bg-primary/10 border-l-4 border-primary rounded-r-2xl px-5 py-3 mb-4">
                 <p className="text-foreground font-bold text-sm italic">
-                  "Every brand begins with a single idea — a nuqta."
+                  "Every brand begins with a single idea, a nuqta."
                 </p>
               </div>
 
@@ -357,7 +363,7 @@ export default function Home() {
               </p>
 
               <p className="text-foreground/70 text-sm leading-relaxed mb-6">
-                We don't just design visuals — we build brands that grow, connect, and stand out.
+                We don't just design visuals, we build brands that grow, connect, and stand out.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -386,7 +392,7 @@ export default function Home() {
             label="Our Process"
             title="How It Works"
             titleHighlight="Works"
-            subtext="A simple, transparent process designed to get you results fast — without the back-and-forth confusion."
+            subtext="A simple, transparent process designed to get you results fast, without the back-and-forth confusion."
           />
 
           <div className="relative max-w-5xl mx-auto">
@@ -401,7 +407,7 @@ export default function Home() {
             >
               {[
                 { icon: Clipboard, step: "01", title: "Discovery & Briefing", desc: "We start by understanding your brand, goals, and target audience. A detailed briefing ensures we are fully aligned before we begin." },
-                { icon: Edit3, step: "02", title: "Design & Creation", desc: "Our creative team gets to work — crafting visuals, strategies, and content tailored specifically to your brand identity." },
+                { icon: Edit3, step: "02", title: "Design & Creation", desc: "Our creative team gets to work, crafting visuals, strategies, and content tailored specifically to your brand identity." },
                 { icon: Rocket, step: "03", title: "Deliver & Launch", desc: "We deliver polished, ready-to-use brand assets. You review, we refine, and we launch with confidence." },
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeInUp} className="text-center">
@@ -427,7 +433,7 @@ export default function Home() {
             label="Choose Us"
             title="Why Choose Us"
             titleHighlight="Choose Us"
-            subtext="We don't just design — we build brand experiences that connect, convert, and last."
+            subtext="We don't just design, we build brand experiences that connect, convert, and last."
           />
 
           <motion.div 
@@ -438,12 +444,12 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {[
-              { icon: Palette, title: "Creative Excellence", desc: "Every project is crafted with passion and originality — no templates, no shortcuts." },
+              { icon: Palette, title: "Creative Excellence", desc: "Every project is crafted with passion and originality, no templates, no shortcuts." },
               { icon: Clock, title: "On-Time Delivery", desc: "We respect your deadlines. Fast turnaround without ever compromising on quality." },
               { icon: User, title: "Client-First Approach", desc: "Your vision drives everything. We listen closely and revise until you're 100% satisfied." },
               { icon: Zap, title: "AI-Powered Speed", desc: "We leverage the latest AI tools to enhance creativity and speed up the workflow." },
               { icon: Star, title: "Quality Guaranteed", desc: "Professional-grade work backed by years of industry experience and 100+ happy clients." },
-              { icon: Building, title: "All-in-One Studio", desc: "From branding to video editing, we handle everything under one roof — your one creative partner." },
+              { icon: Building, title: "All-in-One Studio", desc: "From branding to video editing, we handle everything under one roof, your one creative partner." },
             ].map((feature, i) => (
               <motion.div key={i} variants={fadeInUp} className="bg-background rounded-xl p-5 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
                 <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white mb-3">
@@ -554,7 +560,7 @@ export default function Home() {
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
           <div className="flex gap-16 animate-marquee-left whitespace-nowrap items-center">
-            {[...clientLogos.slice(0, 9), ...clientLogos.slice(0, 9)].map((client, i) => (
+            {[...clientLogos.slice(0, 12), ...clientLogos.slice(0, 12)].map((client, i) => (
               <div key={i} className="inline-flex items-center justify-center shrink-0">
                 <img
                   src={client.img}
@@ -614,12 +620,12 @@ export default function Home() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {[
-              { img: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=900&q=85", cat: "Branding & Strategy", title: "Brand Identity — Zara Eats", desc: "Complete brand identity including logo, color palette, and packaging for a fast food startup." },
-              { img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=85", cat: "Social Media Management", title: "Social Media — FitZone Gym", desc: "Monthly social media content, reels, and growth strategy that grew the page to 20K followers." },
-              { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85", cat: "Marketing & Advertisement", title: "Ad Campaign — StyleHouse", desc: "Meta Ads campaign that achieved 5x ROAS for a fashion e-commerce brand." },
-              { img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=85", cat: "Video Editing", title: "Video Series — TechTalks", desc: "YouTube video editing with motion graphics for a tech education channel." },
-              { img: "https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=900&q=85", cat: "Outdoor & Print Design", title: "Outdoor Print — CafePlex", desc: "Billboard, standee, and menu card designs for a cafe chain across 5 cities." },
-              { img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&q=85", cat: "AI Creative Services", title: "AI Visuals — NovaTech", desc: "AI-generated product imagery and creative automation for a tech brand's launch campaign." },
+              { img: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=900&q=85", cat: "Branding & Strategy", title: "Brand Identity, Zara Eats", desc: "Complete brand identity including logo, color palette, and packaging for a fast food startup." },
+              { img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=85", cat: "Social Media Management", title: "Social Media, FitZone Gym", desc: "Monthly social media content, reels, and growth strategy that grew the page to 20K followers." },
+              { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85", cat: "Marketing & Advertisement", title: "Ad Campaign, StyleHouse", desc: "Meta Ads campaign that achieved 5x ROAS for a fashion e-commerce brand." },
+              { img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=900&q=85", cat: "Video Editing", title: "Video Series, TechTalks", desc: "YouTube video editing with motion graphics for a tech education channel." },
+              { img: "https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=900&q=85", cat: "Outdoor & Print Design", title: "Outdoor Print, CafePlex", desc: "Billboard, standee, and menu card designs for a cafe chain across 5 cities." },
+              { img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&q=85", cat: "AI Creative Services", title: "AI Visuals, NovaTech", desc: "AI-generated product imagery and creative automation for a tech brand's launch campaign." },
             ].map((project, i) => (
               <motion.div key={i} variants={fadeInUp} className="group cursor-pointer">
                 <div className="w-full aspect-[4/3] rounded-xl mb-3 overflow-hidden relative shadow-md">
@@ -704,7 +710,7 @@ export default function Home() {
             label="Client Love"
             title="What Clients Say"
             titleHighlight="Say"
-            subtext="Real feedback from real clients — we let our work (and their words) speak for us."
+            subtext="Real feedback from real clients, we let our work (and their words) speak for us."
           />
 
           <motion.div 
@@ -717,7 +723,7 @@ export default function Home() {
             {[
               { text: "Absolutely outstanding work! They redesigned our entire brand identity and the results were beyond what we imagined. Sales improved significantly after the rebrand.", initials: "AR", name: "Ahmed Raza", title: "E-Commerce Brand Owner" },
               { text: "My YouTube thumbnails went from average to incredible. The team understands aesthetics perfectly and delivers fast. Highly recommended for creators!", initials: "SK", name: "Sara Khan", title: "Content Creator" },
-              { text: "They handled our social media completely — content, captions, ads. Our page grew from 2K to 15K followers in just 3 months. Incredible team!", initials: "BM", name: "Bilal Mehmood", title: "Restaurant Owner" }
+              { text: "They handled our social media completely, content, captions, ads. Our page grew from 2K to 15K followers in just 3 months. Incredible team!", initials: "BM", name: "Bilal Mehmood", title: "Restaurant Owner" }
             ].map((testimonial, i) => (
               <motion.div key={i} variants={fadeInUp} className="bg-white p-5 rounded-2xl shadow-sm border border-border flex flex-col">
                 <div className="flex gap-1 mb-3 text-primary">
